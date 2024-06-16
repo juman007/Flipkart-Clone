@@ -7,22 +7,6 @@ exports.signup = async (req, res, next) => {
    try {
       const { firstName, lastName, email, password } = req.body;
 
-      if (!firstName) {
-         return res.send({ message: "First Name is required" });
-      }
-
-      if (!lastName) {
-         return res.send({ message: "Last Name is required" });
-      }
-
-      if (!password) {
-         return res.send({ message: "Password is required" });
-      }
-
-      if (!email) {
-         return res.send({ message: "Phone Number is required" });
-      }
-
       const existingUser = await User.findOne({ email });
       if (existingUser) {
          return res.status(200).json({
@@ -58,13 +42,6 @@ exports.signin = async (req, res, next) => {
    try {
       const { email, password } = req.body;
 
-      //todo     validation
-      if (!email || !password) {
-         return res.status(404).send({
-            success: false,
-            message: "Invalid email or password",
-         });
-      }
       //todo  check user
       const user = await User.findOne({ email });
       if (!user) {
