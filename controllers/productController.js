@@ -4,9 +4,9 @@ const shortid = require("shortid");
 
 exports.createProduct = async (req, res) => {
    try {
-      const { name, price, description, category, createdBy, quantity } =
-         req.body;
+      const { name, price, description, category, quantity } = req.body;
 
+      let productPictures = [];
       if (req.files.length > 0) {
          productPictures = req.files.map((file) => {
             return { img: file.filename };
