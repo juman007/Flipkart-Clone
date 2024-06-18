@@ -7,6 +7,7 @@ const { connectDB } = require("./DBconfic/db");
 
 const userRoutes = require("./routes/authRouter.js");
 const adminRoutes = require("./routes/admin/authRouter.js");
+const categoryRoutes = require("./routes/categoryRoute.js");
 
 //todo:      environment variables
 env.config();
@@ -28,6 +29,7 @@ app.post("/data", (req, res, next) => {
 
 app.use("/api", userRoutes);
 app.use("/api", adminRoutes);
+app.use("/api", categoryRoutes);
 
 //todo: database connection
 connectDB();

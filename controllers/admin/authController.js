@@ -67,9 +67,13 @@ exports.signin = async (req, res, next) => {
       }
 
       //todo      token create for login
-      const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET_KEY, {
-         expiresIn: "1h",
-      });
+      const token = jwt.sign(
+         { _id: user._id, role: user.role },
+         process.env.JWT_SECRET_KEY,
+         {
+            expiresIn: "1h",
+         }
+      );
       res.status(200).send({
          success: true,
          message: "User login successfully",
