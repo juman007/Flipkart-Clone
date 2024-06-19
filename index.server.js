@@ -9,6 +9,7 @@ const userRoutes = require("./routes/authRouter.js");
 const adminRoutes = require("./routes/admin/authRouter.js");
 const categoryRoutes = require("./routes/categoryRoute.js");
 const productRoutes = require("./routes/productRouter.js");
+const cartRoutes = require("./routes/cartRouter.js");
 
 //todo:      environment variables
 env.config();
@@ -32,6 +33,7 @@ app.use("/api", userRoutes);
 app.use("/api", adminRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
+app.use("/api", cartRoutes);
 
 //todo: database connection
 connectDB();
