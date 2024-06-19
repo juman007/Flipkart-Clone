@@ -10,8 +10,8 @@ exports.addItemToCart = async (req, res, next) => {
             const item = cart.cartItems.find((c) => c.product == product);
 
             if (item) {
-               item.quantity =
-                  Number(item.quantity) + Number(cartItem.quantity);
+               item.quantity += Number(cartItem.quantity);
+               item.price += Number(cartItem.price);
             } else {
                cart.cartItems.push(cartItem);
             }

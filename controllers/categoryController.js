@@ -9,6 +9,13 @@ exports.addCategory = async (req, res) => {
          slug: slugify(req.body.name),
       };
 
+      let categoryImage;
+
+      if (req.file) {
+         categoryObj.categoryImage =
+            process.env.API + "/public/" + req.file.filename;
+      }
+
       if (req.body.parentId) {
          categoryObj.parentId = req.body.parentId;
       }
