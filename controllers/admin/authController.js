@@ -25,13 +25,13 @@ exports.signup = async (req, res, next) => {
          role: "admin",
       }).save();
 
-      res.status(201).json({
+      res.status(200).json({
          success: true,
          message: "User created successfully",
          user: newUser,
       });
    } catch (error) {
-      res.status(404).json({
+      res.status(400).json({
          error: error.message,
          message: "Something went wrong",
       });
@@ -74,6 +74,16 @@ exports.signin = async (req, res, next) => {
             expiresIn: "1h",
          }
       );
+
+      //todo      cookie
+      // res.cookie("token", token, { expiresIn: "1h" });
+      res.cookie("token", token, {
+         httpOnly: true,
+         sameSite: "strict",
+         secure: process.env.NODE_ENV === "production", // true if using HTTPS
+         maxAge: 3600000,
+      }); // 1 hour
+
       res.status(200).send({
          success: true,
          message: "User login successfully",
@@ -94,4 +104,11 @@ exports.signin = async (req, res, next) => {
          error,
       });
    }
+};
+
+exports.signout = (req, res) => {
+   res.clearCookie("token");
+   res.status(200).json({
+      message: "Sign out Successfully",
+   });
 };
