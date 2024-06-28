@@ -27,7 +27,7 @@ exports.userMiddleware = async (req, res, next) => {
       if (user.role !== "user") {
          return res.status(401).json({
             success: false,
-            message: "Access denied",
+            message: "User Access denied",
          });
       } else {
          next();
@@ -47,7 +47,7 @@ exports.adminMiddleware = async (req, res, next) => {
       if (user.role !== "admin") {
          return res.status(401).json({
             success: false,
-            message: "Access denied",
+            message: "Admin Access denied",
          });
       } else {
          next();

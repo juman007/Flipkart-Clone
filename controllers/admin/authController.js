@@ -1,7 +1,7 @@
 const User = require("../../models/userModel");
 const jwt = require("jsonwebtoken");
-const { v4: uuidv4 } = require("uuid");
 const { hashPassword, comparePassword } = require("../../helpers/authHelper");
+const shortid = require("shortid");
 
 exports.signup = async (req, res, next) => {
    try {
@@ -21,7 +21,7 @@ exports.signup = async (req, res, next) => {
          lastName,
          email,
          password: hash_password,
-         username: uuidv4(),
+         username: shortid.generate(firstName),
          role: "admin",
       }).save();
 
