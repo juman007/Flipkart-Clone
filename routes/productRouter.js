@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-const { createProduct } = require("../controllers/productController");
+const { createProduct, getProductsBySlug } = require("../controllers/productController");
 
 router.post(
    "/product/create",
@@ -31,5 +31,7 @@ router.post(
    upload.array("productPictures"),
    createProduct
 );
+
+router.get("/product/:slug", getProductsBySlug);
 
 module.exports = router;

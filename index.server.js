@@ -15,13 +15,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-// Enable CORS
-app.use(
-   cors({
-      origin: "http://localhost:2000", // Frontend URL
-      credentials: true,
-   })
-);
+// todo:  Enable CORS
+const corsOptions = {
+   origin: ["http://localhost:2000", "http://localhost:3000"],
+   credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Serve static files from the 'uploads' directory
 app.use("/public", express.static(path.join(__dirname, "uploads")));
